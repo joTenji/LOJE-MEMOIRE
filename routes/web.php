@@ -13,7 +13,7 @@ Route::get('/', function () {
 Route::controller(ShopController::class)->group(function(){
     Route::get('/loje/shop', 'index')->name('shop');
     Route::post('/loje/shop/dosearch', 'dosearch');
-    // Route::get('/loje/shop', 'index')->name('shop');
+    Route::get('/loje/shop/detail/{path}', 'detail')->name('shop.detail')->where('path', '.*');
 });
 
 Route::get('/image/{path}', [ImageController::class, 'show'])

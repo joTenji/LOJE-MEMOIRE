@@ -9,7 +9,7 @@ class ImageController extends Controller
     //
     public function show($name)
     {
-        $path = "D:\DOCUMENTS\memoire py\\$name";
+        $path = "E:\memoire py\\$name";
 
         if (!file_exists($path)) {
             abort(404);

@@ -1,19 +1,39 @@
 import { useForm } from '@inertiajs/react';
+import LoadingOverlay from '@/components/layout/loading_overlay';
+import { useState, useEffect } from 'react';
 
 const Head_home = () => {
-    const { data, setData, post } = useForm({
+    const { data, setData, post, processing } = useForm({
         image: null,
     });
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        if (processing) {
+            setIsLoading(true);
+        } else {
+            // Délai pour laisser l'animation se terminer
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+            }, 300);
+            return () => {
+                clearTimeout(timer);
+            };
+        }
+    }, [processing]);
 
     const handleSubmitSearch = (e) => {
         e.preventDefault();
-
+        if (!data.image) {
+            return;
+        }
+        setIsLoading(true);
         // Appel de la méthode post() d'Inertia
-        // Le premier argument est la route Laravel à appeler : /login
         post('/loje/shop/dosearch');
     };
     return (
         <>
+            <LoadingOverlay isVisible={isLoading} />
             {/* <!-- Hero Start --> */}
             <div className="container-fluid py-5 mb-5 hero-header">
                 <div className="py-5 container">

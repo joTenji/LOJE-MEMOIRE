@@ -1,3 +1,26 @@
+/*** Modern Upload Styles ***/
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.modern-upload-container {
+  transition: all 0.3s ease;
+}
+
+.modern-upload-container.dragging {
+  transform: scale(1.02);
+  box-shadow: 0 10px 40px rgba(255, 181, 36, 0.2) !important;
+}
+
+.modern-upload-container.has-file {
+  border-color: var(--bs-secondary) !important;
+}
+
 /*** Spinner Start ***/
 #spinner {
   opacity: 0;
